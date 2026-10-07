@@ -13,3 +13,15 @@
 1. Ekstrak ke `C:\xampp\htdocs\pwb_aldi\`, jalankan Apache dan MySQL.
 2. phpMyAdmin: pilih database `dbpwb`, impor `pertemuan-03/administrator.sql`.
 3. Buka `http://localhost/pwb_aldi/index.php/admin/login` (username `admin`, password `admin`).
+
+---
+# Perbaikan Pertemuan 4 (Tampil + Lanjutan CRUD Kategori)
+
+1. View kategori salah folder (`views/kategori/` dan `views/administrator/kategori.php`) -> dipindah ke `views/administrator/kategori/{index,tambah_kategori,ubah_kategori}.php` sesuai `$this->load->view('administrator/kategori/index')` (sebelumnya error "Unable to load the requested file").
+2. Sidebar: link Kategori `administrator/kategori` (404) -> `site_url('admin/kategori')`; Produk belum ada halamannya -> `#`; brand link `index3.html` -> `admin`.
+3. Alert flashdata memakai Bootstrap 5 (`btn-close`, `data-bs-dismiss`, `<svg><use>`) padahal AdminLTE 3 = Bootstrap 4 -> diganti `close`, `data-dismiss`, ikon Font Awesome. Badge `bg-success/bg-danger` -> `badge-success/badge-danger`.
+4. Semua link memakai `site_url()` agar tetap jalan walau mod_rewrite mati.
+5. Pesan setelah Ubah "Berhasil menambahkan" -> "Berhasil mengubah".
+6. Model `ubah()`: menyimpan data tanpa perubahan tidak lagi dianggap gagal (affected_rows = 0).
+7. Form: pesan validasi (`form_error`), nilai input dipertahankan, helper `form` di-autoload, `<p>` yang membungkus `<form>/<div>` diganti `<div>`, output di-escape (`html_escape`), konfirmasi sebelum Hapus.
+8. Menambahkan `pertemuan-04/kategori.sql` (tabel `kategori` + 2 record).
